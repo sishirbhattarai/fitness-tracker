@@ -28,6 +28,10 @@ const workoutSchema = new Schema({
     sets: {
         type: Number,
         required: "Enter the number of sets"
+    },
+    distance: {
+        type: Number,
+        required: "Enter the distance"
     }
 });
 
