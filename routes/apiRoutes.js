@@ -2,7 +2,7 @@ const router = require("express").Router();
 const path = require("path");
 const db = require("../models");
 
-//setting routes and eferencing route from api.js
+//setting routes and referencing route from api.js
 //get 
 router.get("/api/workouts", (req, res) => {
     db.Workout.find({})
@@ -15,7 +15,10 @@ router.get("/api/workouts", (req, res) => {
   });
 
 router.get('/api/workouts/range', (req, res) => {
-  db.Workout.find({})
+  db.Workout.aggregate([ { $addFields: { totalDuration: { $sum: '$exercises.duration' },
+    } ,
+   }
+  ])
     .then((data) => {
       console.log(data);
       res.json(data);
